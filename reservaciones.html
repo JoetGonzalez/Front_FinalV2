@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/funcionesReservaciones.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reservaciónes</title>
+        <link rel="stylesheet" href="dist/styles.css" />
+        <script src="dist/script.js"></script>
+    </head>
+    <body>
+        <!-- Navigation -->
+       <nav class="">
+        <nav class="fixed flex justify-between py-6 w-full lg:px-48 md:px-12 px-4 content-center bg-secondary z-10">
+            <ul class="font-montserrat items-center hidden md:flex">
+              <li class="growing-underline mx-3"> <a href="index.html"> Inicio </a>
+              </li>
+              <li class="growing-underline mx-3"> <a href="gama.html">Gamas</a>
+              </li>
+              <li class="growing-underline mx-3"> <a href="car.html">Carros</a>
+              </li>
+              <li class="growing-underline mx-3"> <a href="clientes.html">Clientes</a>
+              </li>
+              <li class="growing-underline mx-3"> <a href="mensajes.html">Mensajes</a>
+              </li>
+              <li class="growing-underline mx-3"> <a href="reportes.html">Reportes</a>
+              </li>
+            </ul>
+          </div>
+          <div id="showMenu" class="md:hidden">
+            <img src='dist/assets/logos/Menu.svg' alt="Menu icon" />
+          </div>
+      </nav>
+      <div id='mobileNav' class="hidden px-4 py-6 fixed top-0 left-0 h-full w-full bg-secondary z-20 animate-fade-in-down">
+        <div id="hideMenu" class="flex justify-end">
+          <img src='dist/assets/logos/Cross.svg' alt="" class="h-16 w-16" />
+        </div>
+        <ul class="font-montserrat flex flex-col mx-8 my-24 items-center text-3xl">
+          <li class="my-6">
+            <a href="index.html"> Inicio </a>
+          </li>
+          <li class="my-6">
+            <a href="gama.html">Gamas</a>
+          </li>
+          <li class="my-6">
+            <a href="car.html">Carros</a>
+          </li>
+          <li class="my-6">
+            <a href="clientes.html">Clientes</a>
+          </li>
+          <li class="my-6">
+            <a href="mensajes.html">Mensajes</a>
+          </li>
+          <li class="my-6">
+            <a href="reportes.html">Reportes</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Base -->
+      <section class="text-gray-400 bg-white body-font relative">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-black">Reservación</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Ingresar una fecha para la Reservación</p>
+          </div>
+          <div class="lg:w-1/2 md:w-2/3 mx-auto">
+            <div class="flex flex-wrap -m-2">
+              <div class="p-2 w-full">
+                <div class="relative">
+                  <label for="name" class="leading-7 text-sm text-gray-400">Ingrese la fecha de Inicio de la Reservación</label>
+                  <input type="date" id="startDate" name="Inicio" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap -m-2">
+                <div class="p-2 w-full">
+                  <div class="relative">
+                    <label for="name" class="leading-7 text-sm text-gray-400">Ingrese la fecha de Devolución de la Reservación</label>
+                    <input type="date" id="devolutionDate" name="devolución" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap -m-2">
+                <div class="p-2 w-full">
+                  <div class="relative">
+                    <label for="name" class="leading-7 text-sm text-gray-400">Estatus de la reservación</label>
+                    <input type="text" id="status" name="name" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  </div>
+                </div>
+                </div>
+                <div toggleElement class="w-full py-4">
+                    <div class="flex justify-between items-center">
+                      <div question class="font-montserrat font-medium mr-auto">
+                        <Label for="message" class="leading-7 text-sm text-gray-400">Seleccione el Carro: </Label>
+                        <select id="select-car"></select>
+                      </div>
+                    </div>
+                  </div>
+                  <div toggleElement class="w-full py-4">
+                    <div class="flex justify-between items-center">
+                      <div question class="font-montserrat font-medium mr-auto">
+                        <Label for="message" class="leading-7 text-sm text-gray-400">Seleccione el Cliente: </Label>
+                        <select id="select-client"></select>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="font-montserrat p-2 w-full">
+                <button onclick="postReservaciones()" class='flex mx-auto text-white bg-black border-0 py-2 px-8 focus:outline-none hover:bg-black-600 rounded border-black focus:border-solid'>Crear Mensaje</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+              <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Lista</h1>
+            </div>
+            <div class="lg:w-full w-full mx-auto overflow-auto">
+              <table class="table-auto w-full text-left whitespace-no-wrap">
+                <thead>
+                  <tr>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Fecha de Inicio</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Fecha de Devolución</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Estatus</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Carro</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Marca</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Cliente</th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Correo</th>
+                    <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                  </tr>
+                </thead>
+        </table>
+        <script type="text/javascript">
+            window.onload = getReservaciones_Car();
+        </script>
+
+        <script type="text/javascript">
+            window.onload = getReservaciones_Client();
+        </script>
+        <div id="resultado1"></div>
+        <script type="text/javascript">
+          window.onload = getReservaciones();
+          </script>
+        </div>
+        </div>
+        </section>
+    </body>
+</html>
